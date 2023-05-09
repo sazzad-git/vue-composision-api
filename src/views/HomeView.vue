@@ -14,20 +14,46 @@
 
     <div class="edit">
       <h4>Edit COunter title</h4>
-      <input v-model="counterData.title" type="text" />
+      <input v-model="counterData.title" type="text" v-autofocus />
     </div>
   </div>
 </template>
 
 <script setup>
-import { reactive, computed, watch } from "vue";
+/*
+imports
+*/
+import { vAutofocus } from "@/directives/vAutofocus";
+import {
+  reactive,
+  computed,
+  watch,
+  onBeforeMount,
+  onMounted,
+  onBeforeUnmount,
+  onUnmounted,
+  onActivated,
+  onDeactivated,
+  onBeforeUpdate,
+  onUpdated,
+} from "vue";
 
 // const counter = ref(0),
 //   counterTitle = ref("My Counter");
 
+/*
+App title
+*/
 // non reactive data
 const appTitle = "My Amazing counter App";
 
+onMounted(() => {
+  console.log("Do stuff related to App title");
+});
+
+/*
+counter
+*/
 // reactive data
 const counterData = reactive({
   count: 0,
@@ -57,19 +83,91 @@ const increaseCounter = (amount, e) => {
 const decreaseCounter = (amount) => {
   counterData.count -= amount;
 };
+
+onMounted(() => {
+  console.log("Do stuff related to counter");
+});
+
+/*
+directives
+*/
+// const vAutofocus = {
+//   mounted: (el) => {
+//     el.focus();
+//   },
+// };
+
+// multiple hooks
+
+// count er man change korar por
+// onBeforeUpdate, onUpdate
+/*
+onBeforeUpdate(() => {
+  console.log("onBeforeUpdate");
+});
+onUpdated(() => {
+  console.log("onUpdated");
+});
+*/
+
+// page change korar por
+// Mount unmount
+/*
+onBeforeMount(() => {
+  console.log("onBeforeMount");
+});
+onMounted(() => {
+  console.log("onMounted");
+});
+onBeforeUnmount(() => {
+  console.log("onBeforeUnmount");
+});
+onUnmounted(() => {
+  console.log("onUnmounted");
+});
+*/
+
+// page change korar por je kono ek page active hoy
+// onActivated, onDeactivated
+/*
+onActivated(() => {
+  console.log("onActivated");
+});
+onDeactivated(() => {
+  console.log("onDeactivated");
+});
+*/
 </script>
 
 <!-- 
 <script>
-export default{
-computed: {
-  myComputedProperty (){
-    // prform logic based on a data property
-    return 'my result'
-  }
-}
-}
-</script> -->
+export default {
+  data() {
+    return {
+      count: 0,
+    };
+  },
+  computed: {
+    myComputedProperty() {
+      // perfprm logic based on a data property
+      return "my result";
+    },
+  },
+  watch: {
+    count(newCOunt, oldCount) {
+      if (newCOunt === 20) alert("your counter is 20");
+    },
+  },
+  directives: {
+    autofocus: {
+      mounted(el) {
+        el.focus();
+      },
+    },
+  },
+};
+</script>
+  -->
 
 <style lang="scss" scoped>
 .home {

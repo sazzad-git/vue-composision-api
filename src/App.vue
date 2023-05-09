@@ -1,4 +1,3 @@
-
 <template>
   <nav>
     <RouterLink to="/">Home</RouterLink>
@@ -6,6 +5,13 @@
   </nav>
 
   <RouterView />
+  <!-- 
+    <router-view v-slot="{ Component }">
+  <keep-alive>
+    <component :is="Component" />
+  </keep-alive>
+</router-view>
+   -->
 </template>
 
 <style scoped>
@@ -33,5 +39,4 @@ nav a {
 nav a:first-of-type {
   border: 0;
 }
-
 </style>
